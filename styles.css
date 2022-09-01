@@ -15,10 +15,10 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	width: 50%;
+	
   }
 *{
-	margin: 0;
+	margin: 5;
 	padding: 0;
 	box-sizing: border-box;
 	list-style: none;
@@ -127,7 +127,7 @@ body{
 
 .wrapper .form_wrap .input_wrap .input{
 	border: 2px solid var(--secondary);
-	border-radius: 3px;
+	border-radius: 15px;
 	padding: 10px;
 	display: block;
 	width: 100%;	
