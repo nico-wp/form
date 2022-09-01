@@ -1,47 +1,69 @@
-const prevBtns = document.querySelectorAll(".btn-prev");
-const nextBtns = document.querySelectorAll(".btn-next");
-const progress = document.getElementById("progress");
-const formSteps = document.querySelectorAll(".form-step");
-const progressSteps = document.querySelectorAll(".progress-step");
+var form_1 = document.querySelector(".form_1");
+var form_2 = document.querySelector(".form_2");
+var form_3 = document.querySelector(".form_3");
 
-let formStepsNum = 0;
 
-nextBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    formStepsNum++;
-    updateFormSteps();
-    updateProgressbar();
-  });
+var form_1_btns = document.querySelector(".form_1_btns");
+var form_2_btns = document.querySelector(".form_2_btns");
+var form_3_btns = document.querySelector(".form_3_btns");
+
+
+var form_1_next_btn = document.querySelector(".form_1_btns .btn_next");
+var form_2_back_btn = document.querySelector(".form_2_btns .btn_back");
+var form_2_next_btn = document.querySelector(".form_2_btns .btn_next");
+var form_3_back_btn = document.querySelector(".form_3_btns .btn_back");
+
+var form_2_progessbar = document.querySelector(".form_2_progessbar");
+var form_3_progessbar = document.querySelector(".form_3_progessbar");
+
+var btn_done = document.querySelector(".btn_done");
+var modal_wrapper = document.querySelector(".modal_wrapper");
+var shadow = document.querySelector(".shadow");
+
+form_1_next_btn.addEventListener("click", function(){
+	form_1.style.display = "none";
+	form_2.style.display = "block";
+
+	form_1_btns.style.display = "none";
+	form_2_btns.style.display = "flex";
+
+	form_2_progessbar.classList.add("active");
 });
 
-prevBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    formStepsNum--;
-    updateFormSteps();
-    updateProgressbar();
-  });
+form_2_back_btn.addEventListener("click", function(){
+	form_1.style.display = "block";
+	form_2.style.display = "none";
+
+	form_1_btns.style.display = "flex";
+	form_2_btns.style.display = "none";
+
+	form_2_progessbar.classList.remove("active");
 });
 
-function updateFormSteps() {
-  formSteps.forEach((formStep) => {
-    formStep.classList.contains("form-step-active") &&
-      formStep.classList.remove("form-step-active");
-  });
+form_2_next_btn.addEventListener("click", function(){
+	form_2.style.display = "none";
+	form_3.style.display = "block";
 
-  formSteps[formStepsNum].classList.add("form-step-active");
-}
+	form_3_btns.style.display = "flex";
+	form_2_btns.style.display = "none";
 
-function updateProgressbar() {
-  progressSteps.forEach((progressStep, idx) => {
-    if (idx < formStepsNum + 1) {
-      progressStep.classList.add("progress-step-active");
-    } else {
-      progressStep.classList.remove("progress-step-active");
-    }
-  });
+	form_3_progessbar.classList.add("active");
+});
 
-  const progressActive = document.querySelectorAll(".progress-step-active");
+form_3_back_btn.addEventListener("click", function(){
+	form_2.style.display = "block";
+	form_3.style.display = "none";
 
-  progress.style.width =
-    ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
-}
+	form_3_btns.style.display = "none";
+	form_2_btns.style.display = "flex";
+
+	form_3_progessbar.classList.remove("active");
+});
+
+btn_done.addEventListener("click", function(){
+	modal_wrapper.classList.add("active");
+})
+
+shadow.addEventListener("click", function(){
+	modal_wrapper.classList.remove("active");
+})
